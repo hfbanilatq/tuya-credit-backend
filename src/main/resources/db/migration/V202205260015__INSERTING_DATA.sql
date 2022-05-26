@@ -1,25 +1,25 @@
 USE tuya_db;
 
 /* INSERT QUERY NO: 1*/
-INSERT INTO USER_ROLE(ROLE_NAME) VALUES ('ROLE_ADMIN');
+INSERT INTO user_role(role_name) VALUES ('ROLE_ADMIN');
 
 /* INSERT QUERY NO: 2*/
-INSERT INTO USER_ROLE(ROLE_NAME) VALUES ('ROLE_USER');
+INSERT INTO user_role(role_name) VALUES ('ROLE_USER');
 
 /* INSERT QUERY NO: 3 */
-INSERT INTO DOCUMENT_TYPE(ID, DOCUMENT_TYPE)
+INSERT INTO document_type(id, document_type)
 VALUES (1, 'Cédula de Ciudadanía');
 
 /* INSERT QUERY NO: 4 */
-INSERT INTO DOCUMENT_TYPE(ID, DOCUMENT_TYPE)
+INSERT INTO document_type(id, document_type)
 VALUES (2, 'Cédula de Extranjería');
 
 /* INSERT QUERY NO: 5 */
-INSERT INTO DOCUMENT_TYPE(ID, DOCUMENT_TYPE)
+INSERT INTO document_type(id, document_type)
 VALUES (3, 'Tarjeta de Identidad');
 
 /* INSERT QUERY NO: 6 */
-INSERT INTO DOCUMENT_TYPE(ID, DOCUMENT_TYPE)
+INSERT INTO document_type(id, document_type)
 VALUES (4, 'Registro Civil');
 
 /* INSERT QUERY NO: 7 */
