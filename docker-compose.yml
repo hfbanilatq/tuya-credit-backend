@@ -1,0 +1,46 @@
+version: '3.5'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password --sql_mode="" --character-set-server=utf8 --collation-server=utf8_slovenian_ci --init-connect='SET NAMES UTF8;'
+    restart: always
+    env_file: .env
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    networks:
+      - internal
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+
+  trunkall-backend:
+    build: .
+    image: trunkall-backend
+    depends_on:
+      - mysql
+    restart: on-failure
+    env_file: .env
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    volumes:
+      - app-trunkall:/app
+    networks:
+      - external
+      - internal
+
+networks:
+  external:
+    driver: bridge
+  internal:
+    driver: bridge
+
+volumes:
+  app-trunkall:
+  db-data:
