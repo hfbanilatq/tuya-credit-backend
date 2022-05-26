@@ -61,11 +61,11 @@ public class SimulationServiceImpl implements SimulationService {
         List<MonthlyFeeDto> fees = new ArrayList<>();
         BigDecimal creditCardInterest = BigDecimal.valueOf(creditCard.getMonthlyInterest() / 100);
         int numberOfInstallment = 1;
-        BigDecimal balance = BigDecimal.ZERO;
+        BigDecimal balance = priceWithCreditCard;
         BigDecimal feeMonthly = priceWithCreditCard.divide(BigDecimal.valueOf(simulationDto.getNumberOfInstallments()), 6, RoundingMode.HALF_UP);
         BigDecimal pricePaid = BigDecimal.ZERO;
         for (int i = 0; i < simulationDto.getNumberOfInstallments(); i++) {
-            BigDecimal feePrice = BigDecimal.ZERO;
+            BigDecimal feePrice;
             switch (numberOfInstallment) {
                 case 1:
                     feePrice = feeMonthly;
@@ -81,7 +81,7 @@ public class SimulationServiceImpl implements SimulationService {
                 feePrice = feePrice.add(creditCard.getFeeValue());
             }
             pricePaid = pricePaid.add(feePrice);
-            balance = priceWithCreditCard.subtract(feeMonthly);
+            balance = balance.subtract(feeMonthly);
             fees.add(MonthlyFeeDto.builder()
                     .balance(balance)
                     .feeNumber(numberOfInstallment)

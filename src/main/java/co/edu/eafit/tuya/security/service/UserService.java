@@ -112,12 +112,11 @@ public class UserService {
 
             JwtDto jJwtDto = new JwtDto(jwt);
 
-            new GenericResponseDto(false, "Inicio de sesión corecto", jJwtDto);
+            return new GenericResponseDto(false, "Inicio de sesión corecto", jJwtDto);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            new GenericResponseDto(false, "Nombre de usuario o contraseña incorrectos", e);
+            return new GenericResponseDto(false, "Nombre de usuario o contraseña incorrectos", e);
         }
-        return null;
     }
 
     public Optional<User> getByDocumentNumber(String documentNumber) {
