@@ -43,6 +43,7 @@ public class CreditCardServiceImpl implements CreditCardService {
                 .maxFee(creditCard.getMaxFee())
                 .monthlyInterest(creditCard.getMonthlyInterest())
                 .type(creditCard.getType())
+                .imageUrl(creditCard.getImageUrl())
                 .build();
     }
 }

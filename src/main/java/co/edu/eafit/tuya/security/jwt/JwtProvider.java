@@ -32,13 +32,14 @@ public class JwtProvider {
 
     private String errorMessage;
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication, int userId) {
         PrincipalUser principalUser = (PrincipalUser) authentication.getPrincipal();
         List<String> roles = principalUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
         return Jwts.builder()
                 .setSubject(principalUser.getUsername())
                 .claim("roles", roles)
                 .claim("username", principalUser.getUsername())
+                .claim("userId", userId)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000L))
                 .signWith(SignatureAlgorithm.HS512, secret.getBytes())
@@ -78,7 +79,7 @@ public class JwtProvider {
         return this.errorMessage;
     }
     
-    public String refreshToken(JwtDto jwtDto) throws ParseException {
+    public String refreshToken(JwtDto jwtDto, int userId) throws ParseException {
         JWT jwt = JWTParser.parse(jwtDto.getToken());
         JWTClaimsSet jwtClaimsSet = jwt.getJWTClaimsSet();
         String username = jwtClaimsSet.getSubject();
@@ -87,6 +88,7 @@ public class JwtProvider {
                 .setSubject(username)
                 .claim("roles", roles)
                 .claim("username", username)
+                .claim("userId", userId)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration * 1000L))
                 .signWith(SignatureAlgorithm.HS512, secret.getBytes())

@@ -30,9 +30,9 @@ public class SimulationController {
         return new ResponseEntity<>(this.simulationService.save(simulationDto), HttpStatus.OK);
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<?> getSimulations() {
-        return new ResponseEntity<>(this.simulationService.getSimulations(), HttpStatus.OK);
+    @GetMapping("/list/{userId}")
+    public ResponseEntity<?> getSimulations(@PathVariable int userId) {
+        return new ResponseEntity<>(this.simulationService.getSimulations(userId), HttpStatus.OK);
     }
 
     @GetMapping("/list/paginate")

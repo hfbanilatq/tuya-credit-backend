@@ -93,7 +93,7 @@ public class UserService {
         User registeredUser = userRepository.save(user);
 
 
-        return new GenericResponseDto(true, "El email ingresado ya se encuentra en uso", this.mapToUserDto(registeredUser));
+        return new GenericResponseDto(true, "Registro exitoso", this.mapToUserDto(registeredUser));
     }
 
     public GenericResponseDto login(LoginUserDto loginUserDto) {
@@ -104,15 +104,17 @@ public class UserService {
 
             }
 
+            User user = this.userRepository.findByDocumentType_IdAndDocumentNumber(loginUserDto.getDocumentTypeId(), loginUserDto.getDocumentNumber().toLowerCase()).get();
+
             Authentication authentication =
                     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUserDto.getDocumentNumber().toLowerCase(), loginUserDto.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            String jwt = jwtProvider.generateToken(authentication);
+            String jwt = jwtProvider.generateToken(authentication, user.getId());
 
             JwtDto jJwtDto = new JwtDto(jwt);
 
-            return new GenericResponseDto(false, "Inicio de sesión corecto", jJwtDto);
+            return new GenericResponseDto(true, "Inicio de sesión corecto", jJwtDto);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return new GenericResponseDto(false, "Nombre de usuario o contraseña incorrectos", e);

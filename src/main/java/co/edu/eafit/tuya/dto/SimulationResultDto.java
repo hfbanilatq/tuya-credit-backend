@@ -14,6 +14,8 @@ public class SimulationResultDto {
     private BigDecimal realPrice;
     private BigDecimal promotionPrice;
     private BigDecimal pricePaid;
+
+    private BigDecimal priceWithCreditCard;
     @Singular
     List<MonthlyFeeDto> monthlyFees;
 }

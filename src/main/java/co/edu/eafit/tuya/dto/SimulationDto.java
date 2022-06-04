@@ -24,4 +24,5 @@ public class SimulationDto {
     private Short creditCardId;
     private int userId;
     private Date createdAt;
+    private String creditCardName;
 }

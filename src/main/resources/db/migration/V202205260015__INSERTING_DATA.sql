@@ -60,13 +60,13 @@ VALUES ( 'MABE-PLU:3095062', 'https://exitocol.vtexassets.com/arquivos/ids/12717
   'Nevera MABE No Frost 300 L RMA300FJCG', '2070900', 'Exito', '23.001', '31.001');
 
 INSERT INTO product(reference, image_url, description, price, warehouse, discount, discount_with_credit_card)
-VALUES ( 'SAMSUNG-PLU:1724620', '',
- 'Lavadora SAMSUNG Carga Superior 19 kg (42 lb) WA19T6260B', '603000', 'Exito', '49.73466', '54.73466');
+VALUES ( 'SIMPLY-PLU:3026011', 'https://exitocol.vtexassets.com/arquivos/ids/13016446-800-auto?v=637892523395800000&width=800&height=auto&aspect=true',
+ 'Lavadora SIMPLY Carga Superior 7 kg (15 lb) SYTT7K', '629921', 'Exito', '49.73466', '54.73466');
 
 
 
 INSERT INTO product(reference, image_url, description, price, warehouse, discount, discount_with_credit_card)
-VALUES ( 'SAMSUNG-PLU:1724620', 'https://exitocol.vtexassets.com/arquivos/ids/12345673-800-auto?v=637849616588230000&width=800&height=auto&aspect=true',
+VALUES ( 'SAMSUNG-PLU:1724620', 'https://exitocol.vtexassets.com/arquivos/ids/13016446-800-auto?v=637892523395800000&width=800&height=auto&aspect=true',
  'Lavadora SAMSUNG Carga Superior 19 kg (42 lb) WA19T6260B', '3095900', 'Exito', '28.00', '40.00');
 
 

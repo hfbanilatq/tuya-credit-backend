@@ -25,4 +25,5 @@ public class CreditCard {
     private Integer maxFee;
     private Double monthlyInterest;
     private Double effectiveAnnualInterest;
+    private String imageUrl;
 }

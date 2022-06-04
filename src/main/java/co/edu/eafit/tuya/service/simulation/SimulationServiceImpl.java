@@ -94,6 +94,7 @@ public class SimulationServiceImpl implements SimulationService {
                 .promotionPrice(promotionPrice)
                 .monthlyFees(fees)
                 .pricePaid(pricePaid)
+                .priceWithCreditCard(priceWithCreditCard)
                 .realPrice(realPrice)
                 .build());
 
@@ -108,8 +109,8 @@ public class SimulationServiceImpl implements SimulationService {
     }
 
     @Override
-    public GenericResponseDto getSimulations() {
-        List<SimulationDto> simulationDtos = this.simulationRepository.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
+    public GenericResponseDto getSimulations(int id) {
+        List<SimulationDto> simulationDtos = this.simulationRepository.findAllByUser_Id(id).stream().map(this::mapToDto).collect(Collectors.toList());
 
         return new GenericResponseDto(true, "Obtenidas exitosamente", simulationDtos);
     }
@@ -139,6 +140,7 @@ public class SimulationServiceImpl implements SimulationService {
 
     private SimulationDto mapToDto(Simulation simulation) {
         return SimulationDto.builder()
+                .id(simulation.getId())
                 .products(simulation.getProducts().stream().map(product -> ProductDto.builder()
                         .description(product.getDescription())
                         .id(product.getId())
@@ -154,6 +156,8 @@ public class SimulationServiceImpl implements SimulationService {
                 .creditCardId(simulation.getCreditCard().getId())
                 .numberOfInstallments(simulation.getNumberOfInstallments())
                 .userId(simulation.getUser().getId())
+                .createdAt(simulation.getCreatedAt())
+                .creditCardName(simulation.getCreditCard().getType())
                 .build();
     }
 
